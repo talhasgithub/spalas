@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 20.814">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #ff7e82;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #4f5f70;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <g id="Messages" transform="translate(-37 -928)">
+    <g id="Messages-2" data-name="Messages" transform="translate(0 752)">
+      <path id="Path_354" data-name="Path 354" class="cls-1" d="M18.675,15.924h-6.6a1.224,1.224,0,0,0-.93.426L8.228,19.739a.176.176,0,0,1-.31-.112v-2.5a1.212,1.212,0,0,0-1.22-1.2H5.324A5.3,5.3,0,0,1,0,10.672V6.252A5.3,5.3,0,0,1,5.324,1H18.675A5.3,5.3,0,0,1,24,6.252v4.42A5.3,5.3,0,0,1,18.675,15.924Z" transform="translate(38 176)"/>
+      <path id="Path_355" data-name="Path 355" class="cls-2" d="M0,0H9" transform="translate(43 182)"/>
+      <path id="Path_356" data-name="Path 356" class="cls-2" d="M0,1.455H13" transform="translate(43 185.545)"/>
+    </g>
+  </g>
+</svg>

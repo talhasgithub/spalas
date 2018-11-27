@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 17">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #ff7e82;
+        stroke-linecap: round;
+        stroke-width: 3px;
+      }
+    </style>
+  </defs>
+  <g id="FileQ" transform="translate(-899.5 -165.5)">
+    <g id="FileQ-2" data-name="FileQ" transform="translate(865.5 -609.5)">
+      <line id="Line_80" data-name="Line 80" class="cls-1" x2="26" transform="translate(35.5 776.5)"/>
+      <line id="Line_81" data-name="Line 81" class="cls-1" x2="19" transform="translate(42.5 783.5)"/>
+      <line id="Line_83" data-name="Line 83" class="cls-1" x2="2" transform="translate(35.5 783.5)"/>
+      <line id="Line_82" data-name="Line 82" class="cls-1" x2="16" transform="translate(45.5 790.5)"/>
+      <line id="Line_84" data-name="Line 84" class="cls-1" x2="5" transform="translate(35.5 790.5)"/>
+    </g>
+  </g>
+</svg>

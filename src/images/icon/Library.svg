@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.25 20.386">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #ff7e82;
+      }
+
+      .cls-2 {
+        fill: #ff7e82;
+      }
+    </style>
+  </defs>
+  <g id="Library" transform="translate(0.5 0.5)">
+    <g id="Group_150" data-name="Group 150" transform="translate(0 2.322)">
+      <path id="Path_125" data-name="Path 125" class="cls-1" d="M9.106,25.964H0V8.9H9.106ZM.522,25.442H8.584V9.422H.522Z" transform="translate(0 -8.9)"/>
+    </g>
+    <g id="Group_151" data-name="Group 151" transform="translate(8.584)">
+      <path id="Path_126" data-name="Path 126" class="cls-1" d="M41.947,19.386H32.9V0h9.073V19.386Zm-8.527-.522h8.033V.522H33.42Z" transform="translate(-32.9)"/>
+    </g>
+    <g id="Group_152" data-name="Group 152" transform="translate(17.142 2.322)">
+      <path id="Path_127" data-name="Path 127" class="cls-1" d="M74.806,25.964H65.7V8.9h9.106Zm-8.584-.522h8.062V9.422H66.222Z" transform="translate(-65.7 -8.9)"/>
+    </g>
+    <g id="Group_153" data-name="Group 153" transform="translate(2.27 5.923)">
+      <rect id="Rectangle_66" data-name="Rectangle 66" class="cls-2" width="4.566" height="1.044"/>
+    </g>
+    <g id="Group_154" data-name="Group 154" transform="translate(2.27 8.584)">
+      <rect id="Rectangle_67" data-name="Rectangle 67" class="cls-2" width="4.566" height="1.044"/>
+    </g>
+    <g id="Group_155" data-name="Group 155" transform="translate(2.27 11.245)">
+      <rect id="Rectangle_68" data-name="Rectangle 68" class="cls-2" width="4.566" height="1.044"/>
+    </g>
+    <g id="Group_156" data-name="Group 156" transform="translate(3.783 15.759)">
+      <rect id="Rectangle_69" data-name="Rectangle 69" class="cls-2" width="1.565" height="1.044"/>
+    </g>
+    <g id="Group_157" data-name="Group 157" transform="translate(10.828 3.314)">
+      <rect id="Rectangle_70" data-name="Rectangle 70" class="cls-2" width="4.566" height="1.044"/>
+    </g>
+    <g id="Group_158" data-name="Group 158" transform="translate(10.828 5.975)">
+      <rect id="Rectangle_71" data-name="Rectangle 71" class="cls-2" width="4.566" height="1.044"/>
+    </g>
+    <g id="Group_159" data-name="Group 159" transform="translate(10.828 8.636)">
+      <rect id="Rectangle_72" data-name="Rectangle 72" class="cls-2" width="4.566" height="1.044"/>
+    </g>
+    <g id="Group_160" data-name="Group 160" transform="translate(12.341 15.759)">
+      <rect id="Rectangle_73" data-name="Rectangle 73" class="cls-2" width="1.565" height="1.044"/>
+    </g>
+    <g id="Group_161" data-name="Group 161" transform="translate(19.412 5.923)">
+      <rect id="Rectangle_74" data-name="Rectangle 74" class="cls-2" width="4.566" height="1.044"/>
+    </g>
+    <g id="Group_162" data-name="Group 162" transform="translate(19.412 8.584)">
+      <rect id="Rectangle_75" data-name="Rectangle 75" class="cls-2" width="4.566" height="1.044"/>
+    </g>
+    <g id="Group_163" data-name="Group 163" transform="translate(19.412 11.245)">
+      <rect id="Rectangle_76" data-name="Rectangle 76" class="cls-2" width="4.566" height="1.044"/>
+    </g>
+    <g id="Group_164" data-name="Group 164" transform="translate(20.925 15.759)">
+      <rect id="Rectangle_77" data-name="Rectangle 77" class="cls-2" width="1.565" height="1.044"/>
+    </g>
+  </g>
+</svg>
