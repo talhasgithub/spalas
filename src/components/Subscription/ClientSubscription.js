@@ -73,7 +73,10 @@ export default class ClientSubscription extends Component {
               data-target="#model_subscription"
               onClick={this.toggle}
             >
-              <i className="zmdi zmdi-plus" />
+              <i
+                className="fa fa-plus"
+                style={{ fontSize: 15, color: "white" }}
+              />
               Add
             </button>
           </h3>

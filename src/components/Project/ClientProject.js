@@ -6,6 +6,7 @@ import { ProjectFields } from "../../Utilities/FormsModel";
 import ProjectForm from "./ProjectForm";
 import ListingTable from "../Shared/ListingTable";
 import ProjectSmallRow from "./ProjectSmallRow";
+import { white } from "ansi-colors";
 
 export default class ClientProject extends Component {
   constructor(props) {
@@ -147,7 +148,10 @@ export default class ClientProject extends Component {
               data-target="#modal_project"
               onClick={this.toggle}
             >
-              <i className="fa fa-plus" />
+              <i
+                className="fa fa-plus"
+                style={{ fontSize: 15, color: "white" }}
+              />
               Add
             </button>
           </h3>

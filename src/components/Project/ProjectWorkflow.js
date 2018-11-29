@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, Redirect } from "react-router-dom";
 import DatePicker from "react-datepicker";
 
 import BriefTab from "./BriefTab";
@@ -9,6 +9,7 @@ import ResourceTab from "./ResourceTab";
 import VideoTab from "./VideoTab";
 import ReleaseTab from "./ReleaseTab";
 import ProjectWorkflowEdit from "./ProjectWorkflowEdit";
+import UnResolvedRoute from "../Shared/ContentNotFound";
 
 class ProjectWorkflow extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class ProjectWorkflow extends Component {
     this.state = {
       currentTab: <WorkflowTab />
     };
-    console.log(this.props.project);
+    console.log(this.props.content);
   }
 
   changeTab(selectedTab, event) {
@@ -58,6 +59,10 @@ class ProjectWorkflow extends Component {
   }
 
   render() {
+    if (!this.props.content) {
+      return <Redirect to="/home/lead" />;
+    }
+
     return (
       <div className="section__content section__content--p15">
         <div className="row bg-white project-overflow-detail">
@@ -67,10 +72,10 @@ class ProjectWorkflow extends Component {
               {/* <div className="table-avatar avatar-lg">
                 <div className="circle-text-sm">Project Initials</div>
               </div> */}
-              {this.props.project.subject}
+              {this.props.content.subject}
             </span>
             <label>Project ID</label>
-            <span>{this.props.project.id}</span>
+            <span>{this.props.content.id}</span>
           </div>
           <div className="col-lg-2 col-md-6 col-sm-6">
             <label>Client</label>
@@ -81,10 +86,10 @@ class ProjectWorkflow extends Component {
           <div className="col-lg-2 col-md-6 col-sm-6">
             <label>Gender</label>
             <ProjectWorkflowEdit
-              field={this.props.project.gender.replace(/\b\w/g, l =>
+              field={this.props.content.gender.replace(/\b\w/g, l =>
                 l.toUpperCase()
               )}
-              project={this.props.project}
+              project={this.props.content}
               updateProject={this.props.updateProject}
               render={handleOnChange => {
                 return (
@@ -103,8 +108,8 @@ class ProjectWorkflow extends Component {
             />
             <label>Date of Birth</label>
             <ProjectWorkflowEdit
-              field={this.props.project.date_of_birth}
-              project={this.props.project}
+              field={this.props.content.date_of_birth}
+              project={this.props.content}
               updateProject={this.props.updateProject}
               fieldName={"date_of_birth"}
               render={(handleOnChange, selected) => {
@@ -124,8 +129,8 @@ class ProjectWorkflow extends Component {
             <span>Date</span>
             <label>DeadLine</label>
             <ProjectWorkflowEdit
-              field={this.props.project.deadline}
-              project={this.props.project}
+              field={this.props.content.deadline}
+              project={this.props.content}
               updateProject={this.props.updateProject}
               fieldName={"deadline"}
               render={(handleOnChange, selected) => {
@@ -247,4 +252,4 @@ class ProjectWorkflow extends Component {
     );
   }
 }
-export default ProjectWorkflow;
+export default UnResolvedRoute(ProjectWorkflow);

@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import ClientEditForm from "./ClientEditForm";
 import HocForm from "../Shared/HocForm";
 import { ClientFields } from "../../Utilities/FormsModel";
 import ClientSubscription from "../Subscription/ClientSubscription";
 import ClientProject from "../Project/ClientProject";
-export default class ClientEdit extends Component {
+import UnResolvedRoute from "../Shared/ContentNotFound";
+class ClientEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +25,7 @@ export default class ClientEdit extends Component {
       newSubscriptionAddes: !this.state.newSubscriptionAddes
     });
   }
+
   makeEditable() {
     this.setState({
       isEditable: !this.state.isEditable
@@ -33,7 +36,7 @@ export default class ClientEdit extends Component {
     let fieldState = new ClientFields();
 
     for (let field in fieldState) {
-      fieldState[field].value = this.props.client[field];
+      fieldState[field].value = this.props.content[field];
     }
     return fieldState;
   }
@@ -44,7 +47,7 @@ export default class ClientEdit extends Component {
     let $this = this;
     axios({
       method: "put",
-      url: `/api/v1/clients/${this.props.client.id}`,
+      url: `/api/v1/clients/${this.props.content.id}`,
       data: {
         user: formData
       },
@@ -58,6 +61,7 @@ export default class ClientEdit extends Component {
         console.log(error);
       });
   }
+
   render() {
     return (
       <div className="section__content section__content--p15">
@@ -89,11 +93,11 @@ export default class ClientEdit extends Component {
           </div>
 
           <ClientSubscription
-            client={this.props.client}
+            client={this.props.content}
             subscriptions={this.props.subscriptions}
           />
 
-          <ClientProject client={this.props.client} match={this.props.match} />
+          <ClientProject client={this.props.content} match={this.props.match} />
 
           <div className="row">
             <div className="col-md-12">
@@ -221,3 +225,4 @@ export default class ClientEdit extends Component {
     );
   }
 }
+export default UnResolvedRoute(ClientEdit);

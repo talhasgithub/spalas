@@ -91,8 +91,9 @@ class Project extends Component {
             return (
               <ProjectWorkflow
                 {...props}
-                project={this.getProject(props.match.params.id)}
+                content={this.getProject(props.match.params.id)}
                 updateProject={this.updateProject}
+                contentType="project"
               />
             );
           }}

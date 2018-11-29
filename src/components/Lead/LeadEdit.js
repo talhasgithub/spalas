@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import LeadDetail from "./LeadDetail";
 import Workflow from "./Workflow";
-export default class LeadEdit extends Component {
+import { Redirect } from "react-router-dom";
+import UnResolvedRoute from "../Shared/ContentNotFound";
+class LeadEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,16 +21,15 @@ export default class LeadEdit extends Component {
     return this.state.currentTab ? (
       <LeadDetail
         match={this.props.match}
-        lead={this.props.lead}
+        lead={this.props.content}
         updateLead={this.props.updateLead}
       />
     ) : (
       <Workflow />
     );
   }
+
   render() {
-    console.log("Hello World");
-    console.log(this.props.match.params);
     return (
       <div className="section__content section__content--p15">
         <div className="row top-tab-bar">
@@ -64,3 +65,5 @@ export default class LeadEdit extends Component {
     );
   }
 }
+
+export default UnResolvedRoute(LeadEdit);

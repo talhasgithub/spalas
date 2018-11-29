@@ -79,8 +79,9 @@ class Lead extends Component {
     return (
       <LeadEdit
         {...props}
-        lead={this.getLead(props.match.params.id)}
+        content={this.getLead(props.match.params.id)}
         updateLead={this.updateLead}
+        contentType="lead"
       />
     );
   }

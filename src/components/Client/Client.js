@@ -87,9 +87,10 @@ class Client extends Component {
     return (
       <ClientEdit
         {...props}
-        client={this.getClient(props.match.params.id)}
+        content={this.getClient(props.match.params.id)}
         updateClient={this.updateClient}
         subscriptions={this.state.subscriptions}
+        contentType="client"
       />
     );
   }

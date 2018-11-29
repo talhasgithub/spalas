@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import "./App.css";
+import React, { Component, Fragment } from "react";
 import { Route } from "react-router-dom";
 import { loadProgressBar } from "axios-progress-bar";
 
@@ -9,10 +8,10 @@ class App extends Component {
   render() {
     loadProgressBar();
     return (
-      <React.Fragment>
+      <Fragment>
         <Route path="/" exact component={Login} />
         <Route path="/home" component={Home} />
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

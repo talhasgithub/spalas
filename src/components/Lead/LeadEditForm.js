@@ -10,7 +10,7 @@ const LeadEditForm = props => {
           className="au-btn au-btn-icon au-btn--pink btn-lg"
           onClick={handleSubmit}
         >
-          <i className="zmdi zmdi-edit" />
+          <i className="fa fa-edit" style={{ fontSize: 15, color: "white" }} />
           Edit
         </button>
       </h3>
