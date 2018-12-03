@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Route } from "react-router-dom";
-import axios from "axios";
 
 import ClientEdit from "./ClientEdit";
 import ClientListing from "./ClientListing";
+import MakeContextConsumer from "../Auth/MakeContextConsumer";
 
 class Client extends Component {
   constructor(props) {
@@ -23,15 +23,17 @@ class Client extends Component {
   componentDidMount() {
     console.log("Hello Did Mount");
     let $this = this;
-    axios({
-      method: "get",
-      url: "/api/v1/clients"
-    }).then(function(response) {
-      $this.setState({
-        clients: response.data.data.clients,
-        subscriptions: response.data.data.subscriptions
+    this.props
+      .authAxios({
+        method: "get",
+        url: "/api/v1/clients"
+      })
+      .then(function(response) {
+        $this.setState({
+          clients: response.data.data.clients,
+          subscriptions: response.data.data.subscriptions
+        });
       });
-    });
   }
 
   updateClients(client) {
@@ -79,6 +81,7 @@ class Client extends Component {
         clients={this.state.clients}
         updateClients={this.updateClients}
         updateContent={this.updateAllClients}
+        authAxios={this.props.authAxios}
       />
     );
   }
@@ -91,6 +94,7 @@ class Client extends Component {
         updateClient={this.updateClient}
         subscriptions={this.state.subscriptions}
         contentType="client"
+        authAxios={this.props.authAxios}
       />
     );
   }
@@ -112,4 +116,4 @@ class Client extends Component {
     );
   }
 }
-export default Client;
+export default MakeContextConsumer(Client);

@@ -58,14 +58,15 @@ class LeadListing extends Component {
   addLeadCall(formData) {
     let $this = this;
     this.toggle();
-    axios({
-      method: "post",
-      url: "/api/v1/leads",
-      data: {
-        lead: formData
-      },
-      headers: { "Access-Control-Allow-Origin": "*" }
-    })
+    this.props
+      .authAxios({
+        method: "post",
+        url: "/api/v1/leads",
+        data: {
+          lead: formData
+        },
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
       .then(function(response) {
         console.log(response);
         $this.props.updateLeads(response.data.data);
@@ -77,14 +78,15 @@ class LeadListing extends Component {
 
   convertToClientCall(formData) {
     let $this = this;
-    axios({
-      method: "post",
-      url: `/api/v1/leads/${this.currentLead.id}/convert_to_client`,
-      data: {
-        lead: formData
-      },
-      headers: { "Access-Control-Allow-Origin": "*" }
-    })
+    this.props
+      .authAxios({
+        method: "post",
+        url: `/api/v1/leads/${this.currentLead.id}/convert_to_client`,
+        data: {
+          lead: formData
+        },
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
       .then(function(response) {
         console.log(response);
         $this.props.updateLead(response.data.data);

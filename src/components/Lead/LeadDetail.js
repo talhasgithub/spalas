@@ -23,14 +23,15 @@ export default class LeadDetail extends Component {
 
   editLeadCall(formData) {
     let $this = this;
-    axios({
-      method: "put",
-      url: `/api/v1/leads/${this.props.lead.id}`,
-      data: {
-        lead: formData
-      },
-      headers: { "Access-Control-Allow-Origin": "*" }
-    })
+    this.props
+      .authAxios({
+        method: "put",
+        url: `/api/v1/leads/${this.props.lead.id}`,
+        data: {
+          lead: formData
+        },
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
       .then(function(response) {
         console.log(response);
         $this.props.updateLead(response.data.data);

@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 import HocForm from "../Shared/HocForm";
 import { ProjectFields } from "../../Utilities/FormsModel";
 import ProjectForm from "./ProjectForm";
 import ListingTable from "../Shared/ListingTable";
 import ProjectSmallRow from "./ProjectSmallRow";
-import { white } from "ansi-colors";
 
 export default class ClientProject extends Component {
   constructor(props) {
@@ -46,12 +44,13 @@ export default class ClientProject extends Component {
 
   fetchProjects() {
     const $this = this;
-    axios({
-      method: "get",
-      url: `/api/v1/clients/${this.props.client.id}/client_projects`,
-      data: {},
-      headers: { "Access-Control-Allow-Origin": "*" }
-    })
+    this.props
+      .authAxios({
+        method: "get",
+        url: `/api/v1/clients/${this.props.client.id}/client_projects`,
+        data: {},
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
       .then(function(response) {
         console.log(response);
         $this.setState({
@@ -81,7 +80,7 @@ export default class ClientProject extends Component {
 
   fetchSubscription() {
     let $this = this;
-    return axios({
+    return this.props.authAxios({
       method: "get",
       url: `/api/v1/clients/${this.props.client.id}/client_subscriptions`,
       data: {},
@@ -101,14 +100,15 @@ export default class ClientProject extends Component {
   addProjectCall(formData) {
     this.toggle();
     formData.user_id = this.props.client.id;
-    axios({
-      method: "post",
-      url: `/api/v1/projects`,
-      data: {
-        project: formData
-      },
-      headers: { "Access-Control-Allow-Origin": "*" }
-    })
+    this.props
+      .authAxios({
+        method: "post",
+        url: `/api/v1/projects`,
+        data: {
+          project: formData
+        },
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
       .then(
         function(response) {
           console.log(response);

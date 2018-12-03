@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
+import { Route } from "react-router-dom";
+
 import LeadListing from "./LeadListing";
 import LeadEdit from "./LeadEdit";
-import { Route } from "react-router-dom";
-import axios from "axios";
+import MakeContextConsumer from "../Auth/MakeContextConsumer";
 
 class Lead extends Component {
   constructor(props) {
@@ -16,25 +17,21 @@ class Lead extends Component {
     this.updateAllLeads = this.updateAllLeads.bind(this);
     this.routeToLeadEdit = this.routeToLeadEdit.bind(this);
     this.routeToLeadListing = this.routeToLeadListing.bind(this);
-    this.consoleAll();
-  }
-
-  consoleAll() {
-    console.log(this.props.history);
-    console.log(this.props.match);
-    console.log(this.props.location);
   }
 
   componentDidMount() {
     let $this = this;
-    axios({
-      method: "get",
-      url: "/api/v1/leads"
-    }).then(function(response) {
-      $this.setState({
-        leads: response.data.data
+    console.log(this.props);
+    this.props
+      .authAxios({
+        method: "get",
+        url: "/api/v1/leads"
+      })
+      .then(function(response) {
+        $this.setState({
+          leads: response.data.data
+        });
       });
-    });
   }
 
   updateLeads(lead) {
@@ -82,6 +79,7 @@ class Lead extends Component {
         content={this.getLead(props.match.params.id)}
         updateLead={this.updateLead}
         contentType="lead"
+        authAxios={this.props.authAxios}
       />
     );
   }
@@ -95,6 +93,7 @@ class Lead extends Component {
         updateLead={this.updateLead}
         updateAllLeads={this.updateAllLeads}
         getLead={this.getLead}
+        authAxios={this.props.authAxios}
       />
     );
   }
@@ -110,6 +109,7 @@ class Lead extends Component {
         />
         <Route
           path={`${match.path}/:id/leadedit`}
+          exact
           component={this.routeToLeadEdit}
         />
         {() => console.log("caller")}
@@ -117,4 +117,4 @@ class Lead extends Component {
     );
   }
 }
-export default Lead;
+export default MakeContextConsumer(Lead);

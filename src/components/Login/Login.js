@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import "./Login";
+import axios from "axios";
+import { withRouter, Redirect } from "react-router-dom";
+
 import LoginLayout from "./LoginLayout";
-import { withRouter } from "react-router-dom";
+import HocForm from "../Shared/HocForm";
+import LoginForm from "./LoginForm";
+import { LoginFields } from "../../Utilities/FormsModel";
+import MakeContextConsumer from "../Auth/MakeContextConsumer";
+import AuthCredentials from "../Auth/AuthCredentials";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -12,55 +19,56 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.history.push("/home");
+
+  handleSubmit(data) {
+    console.log(data);
+    this.getAuthenticate(data);
   }
+
+  getAuthenticate(credentials) {
+    const $this = this;
+    axios({
+      method: "post",
+      url: "/api/v1/auth/sign_in",
+      data: {
+        email: credentials.email,
+        password: credentials.password
+      }
+    }).then(function(response) {
+      console.log(response);
+      const authData = new AuthCredentials(
+        true,
+        response.headers["access-token"],
+        response.headers.client,
+        response.headers.uid,
+        response.headers["token-type"],
+        response.headers.expiry
+      );
+      $this.props.getAuthenticate(authData);
+    });
+  }
+
   render() {
+    console.log(this.props.location);
+    if (this.props.authData.isAuthenticated && this.props.authData.uid) {
+      return <Redirect to="/home" />;
+    }
     return (
       <LoginLayout>
-        <form name="login-form">
-          <div className="form-group">
-            <label>Email Address</label>
-            <input
-              type="text"
-              placeholder="Email Address"
-              name="email"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="login-info">
-            <span className="login-left">
-              <input type="checkbox" />
-              Keep me logged in
-            </span>
-            <span className="login-right">
-              <a href="#">Forget your password?</a>
-            </span>
-          </div>
-          <input
-            type="submit"
-            name="login"
-            value="Log in"
-            onClick={this.handleSubmit}
-          />
-        </form>
+        <HocForm
+          formFields={LoginFields}
+          FormView={LoginForm}
+          submitCall={this.handleSubmit}
+          isFilled={false}
+        />
       </LoginLayout>
     );
   }
 }
-export default withRouter(Login);
+export default MakeContextConsumer(withRouter(Login));

@@ -43,11 +43,15 @@ class ListUtilityBar extends Component {
   }
 
   closeDropDown(event) {
-    document.removeEventListener("mousedown", this.closeDropDown);
     if (!this.dropdownMenu.contains(event.target)) {
-      this.setState({
-        isDropDown: false
-      });
+      this.setState(
+        {
+          isDropDown: false
+        },
+        () => {
+          document.removeEventListener("mousedown", this.closeDropDown);
+        }
+      );
     }
   }
 

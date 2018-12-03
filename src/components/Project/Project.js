@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
-import axios from "axios";
 import { Route } from "react-router-dom";
 
 import ProjectListing from "./ProjectListing";
 import ProjectWorkflow from "./ProjectWorkflow";
+import MakeContextConsumer from "../Auth/MakeContextConsumer";
 
 class Project extends Component {
   constructor(props) {
@@ -37,10 +37,12 @@ class Project extends Component {
   }
 
   fecthProjects() {
-    axios({
-      method: "get",
-      url: "/api/v1/projects"
-    }).then(this.populateProjects);
+    this.props
+      .authAxios({
+        method: "get",
+        url: "/api/v1/projects"
+      })
+      .then(this.populateProjects);
   }
 
   updateProject(project) {
@@ -73,6 +75,7 @@ class Project extends Component {
         projects={this.state.projects}
         match={this.props.match}
         updateContent={this.updateProjects}
+        authAxios={this.props.authAxios}
       />
     );
   }
@@ -94,6 +97,7 @@ class Project extends Component {
                 content={this.getProject(props.match.params.id)}
                 updateProject={this.updateProject}
                 contentType="project"
+                authAxios={this.props.authAxios}
               />
             );
           }}
@@ -102,4 +106,4 @@ class Project extends Component {
     );
   }
 }
-export default Project;
+export default MakeContextConsumer(Project);

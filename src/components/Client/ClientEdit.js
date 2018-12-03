@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
 
 import ClientEditForm from "./ClientEditForm";
 import HocForm from "../Shared/HocForm";
@@ -45,14 +43,15 @@ class ClientEdit extends Component {
     this.makeEditable();
     console.log(formData);
     let $this = this;
-    axios({
-      method: "put",
-      url: `/api/v1/clients/${this.props.content.id}`,
-      data: {
-        user: formData
-      },
-      headers: { "Access-Control-Allow-Origin": "*" }
-    })
+    this.props
+      .authAxios({
+        method: "put",
+        url: `/api/v1/clients/${this.props.content.id}`,
+        data: {
+          user: formData
+        },
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
       .then(function(response) {
         console.log(response);
         $this.props.updateClient(response.data.data);
@@ -95,9 +94,14 @@ class ClientEdit extends Component {
           <ClientSubscription
             client={this.props.content}
             subscriptions={this.props.subscriptions}
+            authAxios={this.props.authAxios}
           />
 
-          <ClientProject client={this.props.content} match={this.props.match} />
+          <ClientProject
+            client={this.props.content}
+            match={this.props.match}
+            authAxios={this.props.authAxios}
+          />
 
           <div className="row">
             <div className="col-md-12">

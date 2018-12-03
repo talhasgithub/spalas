@@ -23,6 +23,7 @@ class LeadEdit extends Component {
         match={this.props.match}
         lead={this.props.content}
         updateLead={this.props.updateLead}
+        authAxios={this.props.authAxios}
       />
     ) : (
       <Workflow />

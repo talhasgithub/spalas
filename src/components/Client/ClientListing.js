@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import axios from "axios";
 
 import ClientRow from "./ClientRow";
 import ContentListing from "../Shared/ContentListing";
@@ -28,14 +27,15 @@ class ClientListing extends Component {
     let $this = this;
     this.toggle();
 
-    axios({
-      method: "post",
-      url: "/api/v1/clients",
-      data: {
-        user: formData
-      },
-      headers: { "Access-Control-Allow-Origin": "*" }
-    })
+    this.props
+      .authAxios({
+        method: "post",
+        url: "/api/v1/clients",
+        data: {
+          user: formData
+        },
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
       .then(function(response) {
         console.log(response);
         $this.props.updateClients(response.data.data);

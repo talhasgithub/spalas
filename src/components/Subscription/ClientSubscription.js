@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 import { SubscriptionFields } from "../../Utilities/FormsModel";
 import SubcriptionForm from "./SubcriptionForm";
@@ -24,14 +23,15 @@ export default class ClientSubscription extends Component {
   addSubscriptionCall(formData) {
     this.toggle();
     delete formData["package"];
-    axios({
-      method: "post",
-      url: `/api/v1/clients/${this.props.client.id}/create_subscription`,
-      data: {
-        client_subscription: formData
-      },
-      headers: { "Access-Control-Allow-Origin": "*" }
-    })
+    this.props
+      .authAxios({
+        method: "post",
+        url: `/api/v1/clients/${this.props.client.id}/create_subscription`,
+        data: {
+          client_subscription: formData
+        },
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
       .then(function(response) {
         console.log(response);
       })

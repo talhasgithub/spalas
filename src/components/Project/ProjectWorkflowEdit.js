@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import axios from "axios";
 
 export default class ProjectWorkflow extends Component {
   constructor(props) {
@@ -58,16 +57,17 @@ export default class ProjectWorkflow extends Component {
   }
 
   updateProject(value) {
-    axios({
-      method: "put",
-      url: `/api/v1/projects/${this.props.project.id}`,
-      data: {
-        project: {
-          [this.state.inputName]: value
-        }
-      },
-      headers: { "Access-Control-Allow-Origin": "*" }
-    })
+    this.props
+      .authAxios({
+        method: "put",
+        url: `/api/v1/projects/${this.props.project.id}`,
+        data: {
+          project: {
+            [this.state.inputName]: value
+          }
+        },
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
       .then(this.editProjectInList)
       .catch(function(error) {
         console.log(error);

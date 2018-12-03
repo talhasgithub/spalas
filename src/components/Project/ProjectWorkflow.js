@@ -11,51 +11,89 @@ import ReleaseTab from "./ReleaseTab";
 import ProjectWorkflowEdit from "./ProjectWorkflowEdit";
 import UnResolvedRoute from "../Shared/ContentNotFound";
 
+const TABS = [
+  {
+    name: "WORKFLOW",
+    active: true,
+    component: <WorkflowTab />
+  },
+  {
+    name: "STORY",
+    active: false,
+    component: <StoryTab />
+  },
+  {
+    name: "BRIEF",
+    active: false,
+    component: <BriefTab />
+  },
+  {
+    name: "RESOURCES",
+    active: false,
+    component: <ResourceTab />
+  },
+  {
+    name: "VIDEO",
+    active: false,
+    component: <VideoTab />
+  },
+  {
+    name: "RELEASE",
+    active: false,
+    component: <ReleaseTab />
+  }
+];
+
+const TabComponent = props => {
+  return (
+    <li className="nav-item">
+      <button onClick={props.handleClick}>
+        <span
+          id="workflow-tab"
+          className={`nav-link ${props.active ? "active" : ""}`}
+          role="tab"
+          data-toggle="pill"
+          aria-selected="true"
+        >
+          {props.name}
+        </span>
+      </button>
+    </li>
+  );
+};
+
 class ProjectWorkflow extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentTab: <WorkflowTab />
     };
-    console.log(this.props.content);
+    this.tabs = TABS;
+    this.generateTabs = this.generateTabs.bind(this);
   }
 
-  changeTab(selectedTab, event) {
+  handleClickTab(id, event) {
     event.preventDefault();
-    let $this = this;
-    let tab = {
-      Workflow: function() {
-        $this.setState({
-          currentTab: <WorkflowTab />
-        });
-      },
-      STORY: function() {
-        $this.setState({
-          currentTab: <StoryTab />
-        });
-      },
-      BRIEF: function() {
-        $this.setState({
-          currentTab: <BriefTab />
-        });
-      },
-      RESOURCE: function() {
-        $this.setState({
-          currentTab: <ResourceTab />
-        });
-      },
-      VIDEO: function() {
-        $this.setState({
-          currentTab: <VideoTab />
-        });
-      },
-      RELEASE: function() {
-        $this.setState({
-          currentTab: <ReleaseTab />
-        });
+    this.tabs.map((tab, index) => {
+      if (index == id) {
+        tab.active = true;
+      } else {
+        tab.active = false;
       }
-    };
-    return (tab[selectedTab] || tab["Workflow"])();
+    });
+    this.setState({
+      currentTab: this.tabs[id].component
+    });
+  }
+
+  generateTabs(tab, index) {
+    return (
+      <TabComponent
+        name={tab.name}
+        active={tab.active}
+        handleClick={this.handleClickTab.bind(this, index)}
+      />
+    );
   }
 
   render() {
@@ -91,6 +129,7 @@ class ProjectWorkflow extends Component {
               )}
               project={this.props.content}
               updateProject={this.props.updateProject}
+              authAxios={this.props.authAxios}
               render={handleOnChange => {
                 return (
                   <select
@@ -112,6 +151,7 @@ class ProjectWorkflow extends Component {
               project={this.props.content}
               updateProject={this.props.updateProject}
               fieldName={"date_of_birth"}
+              authAxios={this.props.authAxios}
               render={(handleOnChange, selected) => {
                 return (
                   <DatePicker
@@ -133,6 +173,7 @@ class ProjectWorkflow extends Component {
               project={this.props.content}
               updateProject={this.props.updateProject}
               fieldName={"deadline"}
+              authAxios={this.props.authAxios}
               render={(handleOnChange, selected) => {
                 console.log(selected);
                 return (
@@ -157,84 +198,7 @@ class ProjectWorkflow extends Component {
         <div className="row top-tab-bar top-tab-bar-sub">
           <div className="col-md-12 box-wrapper bg-white shade-inside">
             <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-              <li className="nav-item">
-                <a
-                  id="workflow-tab"
-                  className="nav-link  active show"
-                  role="tab"
-                  href="#"
-                  data-toggle="pill"
-                  aria-selected="true"
-                  onClick={this.changeTab.bind(this, "WORKFLOW")}
-                >
-                  WorkFlow
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  id="story-tab"
-                  className="nav-link"
-                  role="tab"
-                  href="#"
-                  data-toggle="pill"
-                  aria-selected="false"
-                  onClick={this.changeTab.bind(this, "STORY")}
-                >
-                  Story
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  id="brief-tab"
-                  className="nav-link"
-                  data-toggle="pill"
-                  href="#"
-                  role="tab"
-                  aria-selected="false"
-                  onClick={this.changeTab.bind(this, "BRIEF")}
-                >
-                  Brief
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  id="resource-tab"
-                  className="nav-link"
-                  data-toggle="pill"
-                  href="#"
-                  role="tab"
-                  aria-selected="false"
-                  onClick={this.changeTab.bind(this, "RESOURCE")}
-                >
-                  Resources
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  id="video-tab"
-                  className="nav-link"
-                  data-toggle="pill"
-                  href="#"
-                  role="tab"
-                  aria-selected="false"
-                  onClick={this.changeTab.bind(this, "VIDEO")}
-                >
-                  Video
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  id="release-tab"
-                  className="nav-link"
-                  data-toggle="pill"
-                  href="#"
-                  role="tab"
-                  aria-selected="false"
-                  onClick={this.changeTab.bind(this, "RELEASE")}
-                >
-                  Release
-                </a>
-              </li>
+              {this.tabs.map(this.generateTabs)}
             </ul>
           </div>
         </div>

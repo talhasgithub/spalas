@@ -12,6 +12,7 @@ class CommentForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange({ target }) {
     console.log(target.value);
     if (target.value == "") {
@@ -27,6 +28,7 @@ class CommentForm extends Component {
     }
     console.log(this.state.commentText);
   }
+
   handleSubmit(e) {
     const $this = this;
     if (this.state.commentText == "") {

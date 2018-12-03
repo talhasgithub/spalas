@@ -212,11 +212,24 @@ function ProjectFields(
     constraints: ["REQUIRED"]
   };
 }
+function LoginFields(email = "", password = "") {
+  this.email = {
+    value: email,
+    error: false,
+    constraints: ["REQUIRED", "EMAIL"]
+  };
+  this.password = {
+    value: password,
+    error: false,
+    constraints: ["REQUIRED"]
+  };
+}
 
 export {
   LeadFields,
   ClientFields,
   ClientEditFields,
   SubscriptionFields,
-  ProjectFields
+  ProjectFields,
+  LoginFields
 };
