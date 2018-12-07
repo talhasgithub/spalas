@@ -8,12 +8,15 @@ import Home from "./components/Home/Home";
 import AuthCredentials from "./components/Auth/AuthCredentials";
 import AuthContext from "./components/Auth/AuthContext";
 import Page404 from "./components/Shared/Page404";
+import FileController from "../src/components/FileController/FileController";
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { authData: new AuthCredentials() };
     this.getAuthenticate = this.getAuthenticate.bind(this);
     this.getUnAuthenticate = this.getUnAuthenticate.bind(this);
+    this.renderHome = this.renderHome.bind(this);
     this.authAxios = null;
   }
 
@@ -28,7 +31,9 @@ class App extends Component {
       return { authData: new AuthCredentials() };
     });
   }
-
+  renderHome(props) {
+    return <FileController Home={Home} {...props} />;
+  }
   render() {
     const AuthData = {
       authData: { ...this.state.authData }
@@ -43,6 +48,7 @@ class App extends Component {
         expiry: AuthData.authData.expiry
       }
     });
+
     loadProgressBar({}, authAxios);
     return (
       <AuthContext.Provider
@@ -55,7 +61,7 @@ class App extends Component {
       >
         <Switch>
           <Route path="/" exact component={Login} />
-          <Route path="/home" component={Home} />
+          <Route path="/home" render={this.renderHome} />
           <Route
             path="*"
             render={({ location }) => <Page404 location={location} />}

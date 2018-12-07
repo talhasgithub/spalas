@@ -225,11 +225,30 @@ function LoginFields(email = "", password = "") {
   };
 }
 
+function MemoryAddFields(name = "", memory_date = "", description = "") {
+  this.name = {
+    value: name,
+    error: false,
+    constraints: ["REQUIRED", "LETTER"]
+  };
+  this.memory_date = {
+    value: memory_date,
+    error: false,
+    constraints: ["REQUIRED"]
+  };
+  this.description = {
+    value: description,
+    error: false,
+    constraints: ["REQUIRED", "LETTER"]
+  };
+}
+
 export {
   LeadFields,
   ClientFields,
   ClientEditFields,
   SubscriptionFields,
   ProjectFields,
-  LoginFields
+  LoginFields,
+  MemoryAddFields
 };

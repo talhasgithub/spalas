@@ -5,7 +5,7 @@ import axios from "axios";
 import { Lead, Client, Project, Dashboard } from "../index";
 import { Route, Redirect, Switch } from "react-router-dom";
 import MakeContextConsumer from "../Auth/MakeContextConsumer";
-import Page404 from "../Shared/Page404";
+
 class Home extends Component {
   render() {
     const { match, location } = this.props;

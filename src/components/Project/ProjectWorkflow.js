@@ -4,43 +4,45 @@ import DatePicker from "react-datepicker";
 
 import BriefTab from "./BriefTab";
 import WorkflowTab from "./WorkflowTab";
-import StoryTab from "./StoryTab";
+import StoryTab from "./StoryTab/StoryTab";
 import ResourceTab from "./ResourceTab";
 import VideoTab from "./VideoTab";
 import ReleaseTab from "./ReleaseTab";
 import ProjectWorkflowEdit from "./ProjectWorkflowEdit";
 import UnResolvedRoute from "../Shared/ContentNotFound";
+import MakeContextConsumer from "../Auth/MakeContextConsumer";
+import MakeFileUploadConsumer from "../FileController/MakeFileUploadConsumer";
 
 const TABS = [
   {
     name: "WORKFLOW",
     active: true,
-    component: <WorkflowTab />
+    component: projectId => <WorkflowTab projectId={projectId} />
   },
   {
     name: "STORY",
     active: false,
-    component: <StoryTab />
+    component: projectId => <StoryTab projectId={projectId} />
   },
   {
     name: "BRIEF",
     active: false,
-    component: <BriefTab />
+    component: projectId => <BriefTab projectId={projectId} />
   },
   {
     name: "RESOURCES",
     active: false,
-    component: <ResourceTab />
+    component: projectId => <ResourceTab projectId={projectId} />
   },
   {
     name: "VIDEO",
     active: false,
-    component: <VideoTab />
+    component: projectId => <VideoTab projectId={projectId} />
   },
   {
     name: "RELEASE",
     active: false,
-    component: <ReleaseTab />
+    component: projectId => <ReleaseTab projectId={projectId} />
   }
 ];
 
@@ -66,14 +68,14 @@ class ProjectWorkflow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: <WorkflowTab />
+      currentTab: <WorkflowTab projectId={this.props.match.params.id} />
     };
     this.tabs = TABS;
     this.generateTabs = this.generateTabs.bind(this);
   }
-
   handleClickTab(id, event) {
     event.preventDefault();
+    let projectId = this.props.match.params.id;
     this.tabs.map((tab, index) => {
       if (index == id) {
         tab.active = true;
@@ -82,7 +84,7 @@ class ProjectWorkflow extends Component {
       }
     });
     this.setState({
-      currentTab: this.tabs[id].component
+      currentTab: this.tabs[id].component(projectId)
     });
   }
 
@@ -92,6 +94,7 @@ class ProjectWorkflow extends Component {
         name={tab.name}
         active={tab.active}
         handleClick={this.handleClickTab.bind(this, index)}
+        key={index + tab.name}
       />
     );
   }
@@ -216,4 +219,6 @@ class ProjectWorkflow extends Component {
     );
   }
 }
-export default UnResolvedRoute(ProjectWorkflow);
+export default MakeContextConsumer(
+  MakeFileUploadConsumer(UnResolvedRoute(ProjectWorkflow))
+);

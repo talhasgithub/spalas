@@ -115,7 +115,6 @@ export default class ProjectWorkflow extends Component {
   }
 
   render() {
-    console.log("its render again");
     return (
       <Fragment>
         {this.state.isEditable ? this.EditUi() : this.EditableUi()}

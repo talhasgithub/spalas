@@ -4,7 +4,13 @@ const MakeContextConsumer = ConsumerComponent => {
   return props => {
     return (
       <AuthContext.Consumer>
-        {({ getAuthenticate, getUnAuthenticate, authData, authAxios }) => {
+        {({
+          getAuthenticate,
+          getUnAuthenticate,
+          authData,
+          authAxios,
+          runForever
+        }) => {
           return (
             <ConsumerComponent
               {...props}
@@ -12,6 +18,7 @@ const MakeContextConsumer = ConsumerComponent => {
               getUnAuthenticate={getUnAuthenticate}
               authData={authData}
               authAxios={authAxios}
+              runForever={runForever}
             />
           );
         }}
