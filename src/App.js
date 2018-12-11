@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { loadProgressBar } from "axios-progress-bar";
 import axios from "axios";
-
 import Login from "./components/Login/Login";
 import Home from "./components/Home/Home";
 import AuthCredentials from "./components/Auth/AuthCredentials";

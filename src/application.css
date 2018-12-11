@@ -3,6 +3,8 @@
 Project:  Life & Story
 Author: Fasih
 -------------------------------------------------------------------*/
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 * {
     margin: 0;
@@ -15539,3 +15541,14 @@ transition:all 0.8s ease; -webkit-transition:transition all 0.8s ease}
     border-top-color: #FB5055 !important;
     border-left-color: #FB5055 !important;
 }
+
+/*/////////////////////////////////////           Slick Carousel         */
+
+.btn-outline-secondary:hover
+{
+    background-image:none !important;
+    background-color:#ff7e82 !important;
+    color: white;
+    
+}
+/*/////////////////////////////////////*/

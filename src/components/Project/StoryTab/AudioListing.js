@@ -16,7 +16,7 @@ class AudioListing extends Component {
     this.props.fileController.getFileToSend(e.target.files[0]);
   }
   renderRow(content) {
-    return <AudioRow content={content} />;
+    return <AudioRow content={content} key={content + "audio-row"} />;
   }
   render() {
     const listColumn = ["FILE NAME", "DATE ADDED", "CONTROLS", "ACTION", ""];

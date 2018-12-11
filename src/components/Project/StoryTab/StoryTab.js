@@ -21,9 +21,6 @@ class StoryTab extends Component {
             </span>
           </div>
           <AudioListing fileController={this.props.fileController} />
-          <div className="overview-wrap wrapper-title position-relative">
-            <h3>Timeline</h3>
-          </div>
           <Memory projectId={this.props.projectId} />
         </div>
       </div>

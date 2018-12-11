@@ -44,7 +44,7 @@ export default class AudioRow extends Component {
     console.log("rednder");
     console.log(containerClass);
     return (
-      <tr key={this.props.content}>
+      <tr>
         <td width="30%" className="tbl-title-lg">
           <i className="fos-icon audio-file-icon" />
           Name

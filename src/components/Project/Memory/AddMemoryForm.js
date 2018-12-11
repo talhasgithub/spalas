@@ -37,7 +37,7 @@ const AddMemoryForm = props => {
           <div class="row">
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
-                <label for="" class="control-label mb-1">
+                <label htmlFor="" class="control-label mb-1">
                   Memory Name
                 </label>
                 <input
@@ -57,7 +57,7 @@ const AddMemoryForm = props => {
               </div>
 
               <div class="form-group">
-                <label for="" class="control-label mb-1">
+                <label htmlFor="" class="control-label mb-1">
                   Date
                 </label>
                 <div className="w-100" />
@@ -78,7 +78,7 @@ const AddMemoryForm = props => {
               </div>
 
               <div class="form-group">
-                <label for="" class="control-label mb-1">
+                <label htmlFor="" class="control-label mb-1">
                   Memory
                 </label>
                 <textarea
